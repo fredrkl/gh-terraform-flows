@@ -4,8 +4,15 @@ on:
   - workflow_dispatch
 
 jobs:
-  build:
+  terraform-apply:
     runs-on: ubuntu-latest
     steps:
+    - uses: actions/checkout@v2
+    - name: Terraform Init
+      uses: hashicorp/terraform-github-actions@master
+      with:
+        tf_actions_version: 0.14.3
+        tf_actions_subcommand: "init"
+        tf_actions_working_dir: "terraform"
     - name: Say Hello
       run: echo "Hello"
