@@ -17,4 +17,3 @@ jobs:
         client-id: ${{ secrets.azure_client_id }}
         tenant-id: ${{ secrets.azure_tenant_id }}
         subscription-id: ${{ secrets.azure_subscription_id }}
-        allow-no-subscriptions: true
