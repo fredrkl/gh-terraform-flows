@@ -34,6 +34,6 @@ jobs:
       run: terraform validate
     - name: Terraform Plan
       working-directory: ./terraform
-      run: |
-        terraform plan -out=tfplan
-        cat tfplan
+      run: terraform plan -out=tfplan
+    - name: Add plan to summary
+      run: terraform show tfplan >> $GITHUB_STEP_SUMMARY
