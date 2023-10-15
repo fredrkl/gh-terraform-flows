@@ -22,3 +22,9 @@ To set up pre-commit hooks for terraform files, run the following commands:
 brew install pre-commit
 pre-commit install
 ```
+
+If you want to uninstall the pre-commit hooks, run the following command:
+
+```bash
+pre-commit uninstall
+```
