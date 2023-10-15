@@ -37,4 +37,4 @@ jobs:
       run: terraform plan -out=tfplan
     - name: Add plan to summary
       working-directory: ./terraform
-      run: terraform show tfplan >> $GITHUB_STEP_SUMMARY
+      run: terraform show -no-color tfplan >> $GITHUB_STEP_SUMMARY
