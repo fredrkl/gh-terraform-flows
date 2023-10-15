@@ -13,3 +13,12 @@ GH-Actions flows for applying terraform
 - Be sure to give the _Azure Entra Application_ you created permissions to the _Azure Subscription_ you are going to use.
 - Create a storage account and update the main.tf backend configuration with the storage account name and container name.
 - Be sure to give the _Azure Entra Application_ you created permissions to the _Storage Account_ you are going to use with the _Storage Blob Data Contributor_ role and _Storage Account Key Operator Service Role_ role.
+
+## Pre-commit hooks for terraform files (optional)
+
+To set up pre-commit hooks for terraform files, run the following commands:
+
+```bash
+brew install pre-commit
+pre-commit install
+```
