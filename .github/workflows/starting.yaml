@@ -20,4 +20,5 @@ jobs:
         tenant-id: ${{ secrets.azure_tenant_id }}
         subscription-id: ${{ secrets.azure_subscription_id }}
     - name: Terraform Init
+      working-directory: ./terraform
       run: terraform init
