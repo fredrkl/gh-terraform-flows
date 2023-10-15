@@ -16,8 +16,7 @@ GH-Actions flows for applying terraform
 
 ## Pre-commit hooks for terraform files (optional)
 
-!!! info
-    The pre-commit hooks are only running on staged files.
+> :info: The pre-commit hooks are only running on staged files.
 
 To set up pre-commit hooks for terraform files, run the following commands:
 
