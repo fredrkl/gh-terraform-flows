@@ -38,10 +38,12 @@ jobs:
 #    - name: Conftest Action
 #      uses: YubicoLabs/action-conftest@v3
 #      files: 
+#    - name: Convert plan to JSON
+#      working-directory: ./terraform
+#      run: terraform show -json tfplan > tfplan.json
     - name: Add plan to summary
       working-directory: ./terraform
-      run: terraform-bin show -no-color tfplan >> $GITHUB_STEP_SUMMARY
+      run: terraform-bin show -json -no-color tfplan >> $GITHUB_STEP_SUMMARY
 #    - name: Terraform Apply
 #      working-directory: ./terraform
 #      run: terraform apply tfplan
-#
