@@ -7,6 +7,11 @@ resource "azurerm_resource_group" "example" {
   location = "eastus"
 }
 
+resource "azurerm_resource_group" "example-adding" {
+  name     = "adding-resource-group"
+  location = "eastus"
+}
+
 terraform {
   backend "azurerm" {
     resource_group_name  = "terraform-state-files"
