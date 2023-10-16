@@ -30,3 +30,7 @@ If you want to uninstall the pre-commit hooks, run the following command:
 ```bash
 pre-commit uninstall
 ```
+
+## Using Azure Storage Account for Terraform state
+
+The Terraform state is stored in an Azure Storage Account configured in the ./terraform/main.tf file.
