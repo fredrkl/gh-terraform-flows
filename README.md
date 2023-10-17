@@ -34,3 +34,17 @@ pre-commit uninstall
 ## Using Azure Storage Account for Terraform state
 
 The Terraform state is stored in an Azure Storage Account configured in the ./terraform/main.tf file.
+
+## Running ConfTest locally
+
+To run the ConfTests locally, first install the ConfTest binary. The easiest way to do this is to use brew:
+
+```bash
+brew install conftest
+```
+
+Please see the [installation instructions](https://www.conftest.dev/install/) for other options.
+
+```bash
+conftest test unit-tests/example-terraform-plan.json
+```
