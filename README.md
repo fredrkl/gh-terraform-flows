@@ -48,3 +48,13 @@ Please see the [installation instructions](https://www.conftest.dev/install/) fo
 ```bash
 conftest test unit-tests/example-terraform-plan.json
 ```
+
+### Lessons learned
+
+When running the conftest, e.g,
+
+```bash
+conftest test --policy somefolder/* unit-tests/example-terraform-plan.json
+```
+
+the policy folder need to be all .rego files.
