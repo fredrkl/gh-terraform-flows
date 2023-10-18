@@ -42,7 +42,7 @@ jobs:
     - name: Conftest Action
       uses: YubicoLabs/action-conftest@v3
       with:
-        files: ${{ steps.terraform-plan-json.outputs.tfplan.json }}
+        files: terraform/tfplan.json
     - name: Add plan to summary
       working-directory: ./terraform
       run: terraform-bin show -json -no-color tfplan >> $GITHUB_STEP_SUMMARY
