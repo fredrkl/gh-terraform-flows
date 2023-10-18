@@ -48,8 +48,7 @@ jobs:
         tar xzf conftest.tar.gz
         sudo mv conftest /usr/local/bin/
     - name: Conftest Test
-      working-directory: ./terraform
-      run: conftest test plan.json
+      run: conftest test sample-terraform-plans/example-terraform-plan.json
 #    - name: Conftest Action
 #      uses: YubicoLabs/action-conftest@v3
 #      env:
