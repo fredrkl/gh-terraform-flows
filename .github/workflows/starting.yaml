@@ -38,7 +38,7 @@ jobs:
     - name: Convert plan to JSON
       id: terraform-plan-json
       working-directory: ./terraform
-      run: terraform show -json tfplan
+      run: terraform show -json tfplan > plan.json
     - name: Add plan to summary
       working-directory: ./terraform
       run: terraform-bin show -json -no-color tfplan >> $GITHUB_STEP_SUMMARY
@@ -47,6 +47,9 @@ jobs:
         wget -O conftest.tar.gz https://github.com/open-policy-agent/conftest/releases/download/v0.28.0/conftest_0.28.0_Linux_x86_64.tar.gz
         tar xzf conftest.tar.gz
         sudo mv conftest /usr/local/bin/
+    - name: Conftest Test
+      working-directory: ./terraform
+      run: conftest test plan.json
 #    - name: Conftest Action
 #      uses: YubicoLabs/action-conftest@v3
 #      env:
