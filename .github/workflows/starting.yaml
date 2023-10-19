@@ -44,8 +44,8 @@ jobs:
         terraform-bin show -json -no-color tfplan > tfplan.json
         cat tfplan.json
         cat tfplan.json >> $GITHUB_STEP_SUMMARY
+        conftest test tfplan.json
 #        terraform-bin show -json -no-color tfplan >> $GITHUB_STEP_SUMMARY
-#        conftest test sample-terraform-plans/example-terraform-plan.json
 #    - name: Convert plan to JSON
 #      id: terraform-plan-json
 #      working-directory: ./terraform
