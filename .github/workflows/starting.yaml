@@ -21,10 +21,11 @@ jobs:
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v2
     - name: Cache Terraform modules
-      uses: actions/cache@v2
+      uses: actions/cache@v3
+      id: cache
       with:
-        path: .terraform
-        key: ${{ runner.os }}-terraform-${{ hashFiles('**/*.tf') }}
+        path: ./terraform/.terraform
+        key: ${{ runner.os }}-terraform-${{ hashFiles('terraform/**/*.tf') }}
     - name: Az CLI login
       uses: azure/login@v1
       with:
@@ -32,9 +33,11 @@ jobs:
         tenant-id: ${{ secrets.azure_tenant_id }}
         subscription-id: ${{ secrets.azure_subscription_id }}
     - name: Terraform Init
+      if: steps.cache.outputs.cache-hit != 'true'
       working-directory: ./terraform
       run: terraform init
     - name: Terraform Validate
+      if: steps.cache.outputs.cache-hit != 'true'
       working-directory: ./terraform
       run: terraform validate
     - name: Terraform Plan tests
