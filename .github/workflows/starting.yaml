@@ -45,6 +45,12 @@ jobs:
         cat tfplan.json
         cat tfplan.json >> $GITHUB_STEP_SUMMARY
         conftest test --policy ../policy/* tfplan.json
+    - name: Conftest Action
+      uses: YubicoLabs/action-conftest@v3
+      env:
+        POLICY_PATH: ./policy
+      with:
+        files: ./terraform/tfplan.json
 #    - name: Terraform Apply
 #      working-directory: ./terraform
 #      run: terraform apply tfplan
