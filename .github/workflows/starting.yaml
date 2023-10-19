@@ -26,11 +26,6 @@ jobs:
         client-id: ${{ secrets.azure_client_id }}
         tenant-id: ${{ secrets.azure_tenant_id }}
         subscription-id: ${{ secrets.azure_subscription_id }}
-    - name: Install Conftest
-      run: |
-        wget -O conftest.tar.gz https://github.com/open-policy-agent/conftest/releases/download/v0.28.0/conftest_0.28.0_Linux_x86_64.tar.gz
-        tar xzf conftest.tar.gz
-        sudo mv conftest /usr/local/bin/
     - name: Terraform Init
       working-directory: ./terraform
       run: terraform init
@@ -42,9 +37,7 @@ jobs:
       run: |
         terraform plan -out=tfplan
         terraform-bin show -json -no-color tfplan > tfplan.json
-        cat tfplan.json
         cat tfplan.json >> $GITHUB_STEP_SUMMARY
-#        conftest test --policy ../policy/* tfplan.json
     - name: Conftest
       uses: instrumenta/conftest-action@v0.4.0
       with:
