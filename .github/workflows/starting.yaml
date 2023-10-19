@@ -48,7 +48,7 @@ jobs:
     - name: Conftest Action
       uses: YubicoLabs/action-conftest@v3
       with:
-        policy: policy/main.rego
+#        policy: policy/main.rego
         files: ./terraform/tfplan.json
 #    - name: Terraform Apply
 #      working-directory: ./terraform
