@@ -45,25 +45,6 @@ jobs:
         cat tfplan.json
         cat tfplan.json >> $GITHUB_STEP_SUMMARY
         conftest test --policy ../policy/* tfplan.json
-#        terraform-bin show -json -no-color tfplan >> $GITHUB_STEP_SUMMARY
-#    - name: Convert plan to JSON
-#      id: terraform-plan-json
-#      working-directory: ./terraform
-#      run: |
-#        terraform show -json tfplan > plan.json
-#    - name: Add plan to summary
-#      working-directory: ./terraform
-#      run: terraform-bin show -json -no-color tfplan >> $GITHUB_STEP_SUMMARY
-#    - name: Conftest Test
-#      run: conftest test sample-terraform-plans/example-terraform-plan.json
-#
-#    - name: Conftest Action
-#      uses: YubicoLabs/action-conftest@v3
-#      env:
-#        POLICY_PATH: ./policy
-#        PLAN_PATH: ./tfplan.json
-#      with:
-#        files: tfplan.json
 #    - name: Terraform Apply
 #      working-directory: ./terraform
 #      run: terraform apply tfplan
