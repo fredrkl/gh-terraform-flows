@@ -49,9 +49,13 @@ Please see the [installation instructions](https://www.conftest.dev/install/) fo
 conftest test unit-tests/example-terraform-plan.json
 ```
 
+## ConfTest
+
+ConfTest is running as part of the GH Actions workflow. The policy files are located in the `policy` folder, and written in Rego[https://www.openpolicyagent.org/docs/latest/policy-language/]. The tests are running against the generated Terraform plan file.
+
 ### Lessons learned
 
-When running the conftest, e.g,
+When running the ConfTest, e.g,
 
 ```bash
 conftest test --policy somefolder/* unit-tests/example-terraform-plan.json
