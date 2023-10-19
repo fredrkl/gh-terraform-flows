@@ -26,29 +26,36 @@ jobs:
         client-id: ${{ secrets.azure_client_id }}
         tenant-id: ${{ secrets.azure_tenant_id }}
         subscription-id: ${{ secrets.azure_subscription_id }}
+    - name: Install Conftest
+      run: |
+        wget -O conftest.tar.gz https://github.com/open-policy-agent/conftest/releases/download/v0.28.0/conftest_0.28.0_Linux_x86_64.tar.gz
+        tar xzf conftest.tar.gz
+        sudo mv conftest /usr/local/bin/
     - name: Terraform Init
       working-directory: ./terraform
       run: terraform init
     - name: Terraform Validate
       working-directory: ./terraform
       run: terraform validate
-    - name: Terraform Plan
+    - name: Terraform Plan tests
       working-directory: ./terraform
-      run: terraform plan -out=tfplan
-    - name: Convert plan to JSON
-      id: terraform-plan-json
-      working-directory: ./terraform
-      run: terraform show -json tfplan > plan.json
-    - name: Add plan to summary
-      working-directory: ./terraform
-      run: terraform-bin show -json -no-color tfplan >> $GITHUB_STEP_SUMMARY
-    - name: Install Conftest
       run: |
-        wget -O conftest.tar.gz https://github.com/open-policy-agent/conftest/releases/download/v0.28.0/conftest_0.28.0_Linux_x86_64.tar.gz
-        tar xzf conftest.tar.gz
-        sudo mv conftest /usr/local/bin/
-    - name: Conftest Test
-      run: conftest test sample-terraform-plans/example-terraform-plan.json
+        terraform plan -out=tfplan
+        terraform-bin show -json -no-color tfplan > tfplan.json
+        cat tfplan.json
+#        terraform-bin show -json -no-color tfplan >> $GITHUB_STEP_SUMMARY
+#        conftest test sample-terraform-plans/example-terraform-plan.json
+#    - name: Convert plan to JSON
+#      id: terraform-plan-json
+#      working-directory: ./terraform
+#      run: |
+#        terraform show -json tfplan > plan.json
+#    - name: Add plan to summary
+#      working-directory: ./terraform
+#      run: terraform-bin show -json -no-color tfplan >> $GITHUB_STEP_SUMMARY
+#    - name: Conftest Test
+#      run: conftest test sample-terraform-plans/example-terraform-plan.json
+#
 #    - name: Conftest Action
 #      uses: YubicoLabs/action-conftest@v3
 #      env:
