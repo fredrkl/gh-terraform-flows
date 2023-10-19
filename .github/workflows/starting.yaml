@@ -24,7 +24,7 @@ jobs:
       uses: actions/cache@v3
       id: cache
       with:
-        path: ./terraform/.terraform
+        path: ./terraform
         key: ${{ runner.os }}-terraform-${{ hashFiles('terraform/**/*.tf') }}
     - name: Az CLI login
       uses: azure/login@v1
