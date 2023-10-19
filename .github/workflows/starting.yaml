@@ -44,7 +44,7 @@ jobs:
         terraform-bin show -json -no-color tfplan > tfplan.json
         cat tfplan.json
         cat tfplan.json >> $GITHUB_STEP_SUMMARY
-        conftest test --policy ../policy/* tfplan.json
+#        conftest test --policy ../policy/* tfplan.json
     - name: Conftest Action
       uses: YubicoLabs/action-conftest@v3
       env:
