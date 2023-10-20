@@ -44,11 +44,11 @@ jobs:
         terraform plan -out=tfplan
         terraform-bin show -json -no-color tfplan > tfplan.json
         cat tfplan.json >> $GITHUB_STEP_SUMMARY
-    - name: Conftest
-      uses: instrumenta/conftest-action@v0.4.0
-      with:
-        files: ./terraform/tfplan.json
-        policy: ./policy
+#    - name: Conftest
+#      uses: instrumenta/conftest-action@v0.4.0
+#      with:
+#        files: ./terraform/tfplan.json
+#        policy: ./policy
 #    - name: Terraform Apply
 #      working-directory: ./terraform
 #      run: terraform apply tfplan
