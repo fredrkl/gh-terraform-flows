@@ -14,7 +14,7 @@ resource "azurerm_resource_group" "example-adding" {
 
   lifecycle {
     precondition {
-      condition     = location == "centralus"
+      condition     = self.location == "centralus"
       error_message = "The resource group must be located in the eastus region."
     }
   }
