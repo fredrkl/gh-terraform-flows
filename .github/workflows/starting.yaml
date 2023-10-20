@@ -33,11 +33,9 @@ jobs:
         tenant-id: ${{ secrets.azure_tenant_id }}
         subscription-id: ${{ secrets.azure_subscription_id }}
     - name: Terraform Init
-#     if: steps.cache.outputs.cache-hit != 'true'
       working-directory: ./terraform
       run: terraform init
     - name: Terraform Validate
-#      if: steps.cache.outputs.cache-hit != 'true'
       working-directory: ./terraform
       run: terraform validate
     - name: Terraform Plan tests
