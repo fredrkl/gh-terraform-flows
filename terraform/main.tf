@@ -6,6 +6,7 @@ provider "azurerm" {
 #  name     = "example-resource-group"
 #  location = "eastus"
 #}
+# Another comment to invalidate the cache
 
 resource "azurerm_resource_group" "example-adding" {
   name     = "adding-resource-group"
