@@ -4,3 +4,8 @@ repos:
   hooks:
   - id: terraform_fmt
     files: ^terraform/.*\.tf$
+- repo: https://github.com/anderseknert/pre-commit-opa
+  rev: v1.4.1
+  hooks:
+  - id: opa-fmt
+  - id: opa-check
