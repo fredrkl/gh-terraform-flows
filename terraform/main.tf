@@ -11,6 +11,13 @@ provider "azurerm" {
 resource "azurerm_resource_group" "example-adding" {
   name     = "adding-resource-group"
   location = "eastus"
+
+  lifecycle {
+    precondition {
+      condition     = location == "centralus"
+      error_message = "The resource group must be located in the eastus region."
+    }
+  }
 }
 
 terraform {
