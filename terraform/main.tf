@@ -2,31 +2,6 @@ provider "azurerm" {
   features {}
 }
 
-#resource "azurerm_resource_group" "example" {
-#  name     = "example-resource-group"
-#  location = "eastus"
-#}
-# Another comment to invalidate the cache
-
-
-#resource "azurerm_container_registry" "balbla" {
-#  location = "eastus"
-#  resource_group_name = azurerm_resource_group.example-adding.name
-#  sku = "Basic"
-#  name = "example-container-registry"
-#  admin_enabled = true
-#  lifecycle {
-#    precondition {
-#      condition     = self.location == "eastus"
-#      error_message = "The resource group must be located in the eastus region."
-#    }
-#    postcondition {
-#      condition = admin_enabled == false
-#      error_message = "Admin must be enabled"
-#    }
-#  }
-#}
-
 resource "azurerm_storage_account" "example-adding-storage" {
   location                 = "eastus"
   name                     = "examplestorageaccount"
@@ -38,12 +13,17 @@ resource "azurerm_storage_account" "example-adding-storage" {
       condition     = azurerm_resource_group.example-adding.location == "eastus"
       error_message = "The selected resource group must be located in the eastus region."
     }
+
+    postcondition {
+      condition     = can("${azurerm_storage_account.example-adding-storage.id}")
+      error_message = "The storage account was not created successfully."
+    }
   }
 }
 
 resource "azurerm_resource_group" "example-adding" {
   name     = "adding-resource-group"
-  location = "northeurope"
+  location = "eastus" // change this to "northeurope" to see the error
 
 }
 
