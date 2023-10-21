@@ -1,3 +1,3 @@
 plugin "terraform" {
-  preset = "recommended
+  preset = "recommended"
 }
