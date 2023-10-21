@@ -15,7 +15,7 @@ resource "azurerm_storage_account" "example-adding-storage" {
     }
 
     postcondition {
-      condition     = can("${azurerm_storage_account.example-adding-storage.id}")
+      condition     = can(azurerm_storage_account.example-adding-storage.id)
       error_message = "The storage account was not created successfully."
     }
   }
