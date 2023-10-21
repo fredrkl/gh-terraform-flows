@@ -42,11 +42,13 @@ jobs:
       uses: terraform-linters/setup-tflint@v4.0.0
     - name: Init TFLint
       run: tflint --init
+      working-directory: ./terraform
       env:
         # https://github.com/terraform-linters/tflint/blob/master/docs/user-guide/plugins.md#avoiding-rate-limiting
         GITHUB_TOKEN: ${{ github.token }}
     - name: Run TFLint
-      run: tflint -f compact --recursive ./ ./terraform
+      working-directory: ./terraform
+      run: tflint -f compact --recursive
     - name: Terraform Plan
       working-directory: ./terraform
       run: |
