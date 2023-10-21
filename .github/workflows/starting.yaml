@@ -38,6 +38,15 @@ jobs:
     - name: Terraform Validate
       working-directory: ./terraform
       run: terraform validate
+    - name: Setup TFLint
+      uses: terraform-linters/setup-tflint@v4.0.0
+    - name: Init TFLint
+      run: tflint --init
+      env:
+        # https://github.com/terraform-linters/tflint/blob/master/docs/user-guide/plugins.md#avoiding-rate-limiting
+        GITHUB_TOKEN: ${{ github.token }}
+    - name: Run TFLint
+      run: tflint -f compact
     - name: Terraform Plan
       working-directory: ./terraform
       run: |
