@@ -1,0 +1,3 @@
+plugin "terraform" {
+  preset = "recommended
+}
