@@ -2,15 +2,15 @@ provider "azurerm" {
   features {}
 }
 
-resource "azurerm_storage_account" "example-adding-storage" {
+resource "azurerm_storage_account" "storage" {
   location                 = "eastus"
   name                     = "examplestorageaccount"
   account_replication_type = "LRS"
-  resource_group_name      = azurerm_resource_group.example-adding.name
+  resource_group_name      = azurerm_resource_group.example.name
   account_tier             = "Standard"
   lifecycle {
     precondition {
-      condition     = azurerm_resource_group.example-adding.location == "eastus"
+      condition     = azurerm_resource_group.example.location == "eastus"
       error_message = "The selected resource group must be located in the eastus region."
     }
 
@@ -21,8 +21,8 @@ resource "azurerm_storage_account" "example-adding-storage" {
   }
 }
 
-resource "azurerm_resource_group" "example-adding" {
-  name     = "adding-resource-group"
+resource "azurerm_resource_group" "example" {
+  name     = "terraform-workflowgroup"
   location = "eastus" // change this to "northeurope" to see the error
 
 }
