@@ -3,7 +3,7 @@ variable "location" {
   description = "The location for the resource group."
 
   validation {
-    condition     = range("eastus", "northeurope")
+    condition     = contains(["eastus", "northeurope"], var.location)
     error_message = "The location must be between eastus and westus."
   }
 }
