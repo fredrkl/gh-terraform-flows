@@ -1,3 +1,6 @@
+provider "azurerm" {
+  features {}
+}
 
 resource "azurerm_storage_account" "example-adding-storage" {
   location                 = "eastus"
