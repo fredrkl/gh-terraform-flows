@@ -1,6 +1,3 @@
-provider "azurerm" {
-  features {}
-}
 
 resource "azurerm_storage_account" "example-adding-storage" {
   location                 = "eastus"
@@ -28,6 +25,12 @@ resource "azurerm_resource_group" "example-adding" {
 }
 
 terraform {
+  required_providers {
+    azurerm = {
+      source  = "hashicorp/azurerm"
+      version = "2.46.0"
+    }
+  }
   backend "azurerm" {
     resource_group_name  = "terraform-state-files"
     storage_account_name = "terraformdemostatefiles"
