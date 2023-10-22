@@ -25,6 +25,7 @@ resource "azurerm_resource_group" "example-adding" {
 }
 
 terraform {
+  required_version = ">= 1.6"
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
