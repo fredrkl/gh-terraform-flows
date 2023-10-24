@@ -42,6 +42,14 @@ terraform {
   }
 }
 
+check "health_check" {
+  assert {
+    condition     = azurerm_resource_group.example.id != ""
+    error_message = "${azurerm_resource_group.example.name} is up and running"
+  }
+}
+
+## Example of a health check
 #check "health_check" {
 #  data "http" "terraform_io" {
 #    url = "https://www.terraform.io"
