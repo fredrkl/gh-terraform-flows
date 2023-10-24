@@ -22,8 +22,15 @@ resource "azurerm_storage_account" "storage" {
 }
 
 resource "azurerm_resource_group" "example" {
-  name     = "terraform-workflowgroup"
+  name     = "${name_prefix}-tf-workflowgroup"
   location = var.location // change this to "northeurope" to see the error
+}
+
+check "resource_group_is_up" {
+  assert {
+    condition     = azurerm_resource_group.example.id != ""
+    error_message = "${azurerm_resource_group.example.name} is up and running"
+  }
 }
 
 terraform {
@@ -39,12 +46,5 @@ terraform {
     storage_account_name = "terraformdemostatefiles"
     container_name       = "terraform-demo-tfstate"
     key                  = "terraform.tfstate"
-  }
-}
-
-check "health_check" {
-  assert {
-    condition     = azurerm_resource_group.example.id != ""
-    error_message = "${azurerm_resource_group.example.name} is up and running"
   }
 }
