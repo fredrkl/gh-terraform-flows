@@ -55,6 +55,10 @@ jobs:
         terraform plan -out=tfplan -var="location=eastus"
         terraform-bin show -json -no-color tfplan > tfplan.json
         terraform-bin show -no-color tfplan >> $GITHUB_STEP_SUMMARY
+    - name: Terraform Test
+      working-directory: ./terraform
+      run: |
+        terraform test
 #    - name: Conftest
 #      uses: instrumenta/conftest-action@v0.4.0
 #      with:
