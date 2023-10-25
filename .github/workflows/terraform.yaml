@@ -59,11 +59,11 @@ jobs:
       working-directory: ./terraform
       run: |
         terraform test
-#    - name: Conftest
-#      uses: instrumenta/conftest-action@v0.4.0
-#      with:
-#        files: ./terraform/tfplan.json
-#        policy: ./policy
+    - name: Conftest
+      uses: instrumenta/conftest-action@v0.4.0
+      with:
+        files: ./terraform/tfplan.json
+        policy: ./policy
 #    - name: Terraform Apply
 #      working-directory: ./terraform
 #      run: terraform apply tfplan
