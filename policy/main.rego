@@ -6,12 +6,12 @@ deny[msg] {
 
 	# The test
 	resource == "adding-resource-group"
-	msg = "You cannot add a resource group"
+	msg = "You cannot add a resource group named adding-resoruce-group"
 }
 
 deny[msg] {
 	resource_location := input.planned_values.root_module.resources[_].values.location
-	resource_location == "eastus"
+	resource_location == "northcentralus"
 
-	msg = "You cannot create resources in westus"
+	msg = "You cannot create resources in North Central US"
 }
