@@ -26,12 +26,20 @@ resource "azurerm_resource_group" "example" {
   location = var.location // change this to "northeurope" to see the error
 }
 
-check "resource_group_is_up" {
+check "storage_account_name_is_valid" {
   assert {
-    condition     = azurerm_resource_group.example.id != ""
-    error_message = "${azurerm_resource_group.example.name} is up and running"
+    condition     = substr(azurerm_storage_account.storage.name, 0, 7) == "example"
+    error_message = "The storage account name must be between 3 and 24 characters and contain only lowercase letters and numbers."
   }
+
 }
+
+#check "resource_group_is_up" {
+#  assert {
+#    condition     = azurerm_resource_group.example.id != ""
+#    error_message = "${azurerm_resource_group.example.name} is up and running"
+#  }
+#}
 
 terraform {
   required_version = ">= 1.6"
