@@ -63,19 +63,26 @@ jobs:
       with:
         files: ./terraform/tfplan.json
         policy: ./policy
+    - name: Trivy Terraform plan scann
+      uses: aquasecurity/trivy-action@master
+      with:
+        scan-type: config
+        input: ./terraform/tfplan.json
     - name: Terraform Test
       working-directory: ./terraform
       run: |
         terraform test
-    - name: tfsec
-      uses: aquasecurity/tfsec-sarif-action@v0.1.0
-      with:
-        sarif_file: tfsec.sarif
-        full_repo_scan: true
-    - name: Upload SARIF file
-      uses: github/codeql-action/upload-sarif@v1
-      with:
-        sarif_file: tfsec.sarif
+#    - name: Run Trivy vulnerability scanner in IaC mode
+#      uses: aquasecurity/trivy-action@master
+#      with:
+#        scan-type: config
+#        image-ref: ./terraform
+#        format: sarif
+#        output: trivy-results.sarif
+#    - name: Upload Trivy scan results to GitHub Security tab
+#      uses: github/codeql-action/upload-sarif@v2
+#      with:
+#        sarif_file: 'trivy-results.sarif'
 #    - name: Terraform Apply
 #      working-directory: ./terraform
 #      run: terraform apply tfplan
