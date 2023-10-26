@@ -22,7 +22,7 @@ resource "azurerm_storage_account" "storage" {
 }
 
 resource "azurerm_resource_group" "example" {
-  name     = "${name_prefix}-tf-workflowgroup"
+  name     = "${var.name_prefix}-tf-workflowgroup"
   location = var.location // change this to "northeurope" to see the error
 }
 
