@@ -13,7 +13,7 @@ variable "name_prefix" {
   description = "The prefix for the resource group."
 
   validation {
-    condition     = length(var.resource_group_prefix) <= 10
+    condition     = length(var.name_prefix) <= 10
     error_message = "The prefix must be less than 10 characters."
   }
 }
