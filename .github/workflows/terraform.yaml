@@ -3,8 +3,7 @@ on:
   - push
   - workflow_dispatch
 
-permissions:
-  id-token: write
+permissions: write-all
 
 env:
   ARM_USE_OIDC: true
