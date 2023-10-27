@@ -34,6 +34,18 @@ check "storage_account_name_is_valid" {
 
 }
 
+resource "azurerm_container_registry" "example" {
+  name                = "example-registry"
+  resource_group_name = azurerm_resource_group.example.name
+  location            = azurerm_resource_group.example.location
+  sku                 = "Basic"
+  admin_enabled       = false
+
+  network_rule_set {
+    default_action = "Deny"
+  }
+}
+
 #check "resource_group_is_up" {
 #  assert {
 #    condition     = azurerm_resource_group.example.id != ""
