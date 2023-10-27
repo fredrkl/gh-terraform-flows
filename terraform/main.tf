@@ -34,16 +34,14 @@ check "storage_account_name_is_valid" {
 
 }
 
-resource "azurerm_container_registry" "example" {
-  name                = "ghactionexampleregistry"
-  resource_group_name = azurerm_resource_group.example.name
-  location            = azurerm_resource_group.example.location
-  sku                 = "Basic"
-  admin_enabled       = false
+resource "azurerm_storage_account" "invalid" {
+  name                     = "invalidstorageaccount"
+  account_replication_type = "LRS"
+  resource_group_name      = azurerm_resource_group.example.name
+  account_tier             = "Standard"
+  location                 = azurerm_resource_group.example.location
 
-  network_rule_set {
-    default_action = "Deny"
-  }
+  enable_https_traffic_only = false
 }
 
 #check "resource_group_is_up" {
