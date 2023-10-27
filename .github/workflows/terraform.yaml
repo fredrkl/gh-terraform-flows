@@ -70,8 +70,8 @@ jobs:
     - name: Run Trivy vulnerability scanner in IaC mode
       uses: aquasecurity/trivy-action@master
       with:
-        scan-type: config
-        image-ref: ./terraform
+        scan-type: 'fs'
+        scan-ref: './terraform'
         format: sarif
         output: trivy-results.sarif
     - name: Upload Trivy scan results to GitHub Security tab
