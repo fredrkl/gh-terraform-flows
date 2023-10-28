@@ -8,6 +8,7 @@ resource "azurerm_storage_account" "storage" {
   account_replication_type = "LRS"
   resource_group_name      = azurerm_resource_group.example.name
   account_tier             = "Standard"
+  min_tls_version          = "TLS1_2"
   lifecycle {
     precondition {
       condition     = azurerm_resource_group.example.location == "eastus"
@@ -40,8 +41,9 @@ resource "azurerm_storage_account" "invalid" {
   resource_group_name      = azurerm_resource_group.example.name
   account_tier             = "Standard"
   location                 = azurerm_resource_group.example.location
+  min_tls_version          = "TLS1_2"
 
-  enable_https_traffic_only = false
+  enable_https_traffic_only = true
 }
 
 #check "resource_group_is_up" {
