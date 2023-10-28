@@ -46,12 +46,6 @@ resource "azurerm_storage_account" "invalid" {
   enable_https_traffic_only = true
 }
 
-#check "resource_group_is_up" {
-#  assert {
-#    condition     = azurerm_resource_group.example.id != ""
-#    error_message = "${azurerm_resource_group.example.name} is up and running"
-#  }
-#}
 
 terraform {
   required_version = ">= 1.6"
